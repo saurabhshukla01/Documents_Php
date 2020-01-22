@@ -1,0 +1,436 @@
+How To install Laravel in Php framework 
+Url Install Laravel :
+
+https://www.phptpoint.com/install-laravel-on-windows/
+
+
+Step 1
+
+Visit the below-mentioned URL and download composer to install it on your system.
+url :
+https://getcomposer.org/download/
+
+install composer on window 10 …
+Steps : 
+
+“
+https://laravel.com
+Click documentation
+Installing Laravel 
+Composer download
+(dependency manager composer)
+
+Composer -setup.exe
+next->next-> installed successfully 
+”
+
+Open cmd directory of xampp server in htdocs..
+
+Goto cmd open run administrators account : 
+$ composer
+Download updated version of laravel framework in php :
+
+$ composer create -project laravel/laravel laravel “5.1*” 
+Step 2
+After downloading composer, open the command prompt browse to the web server root directory or localhost folder. Well! Hopefully, you already have installed XAMPP or WAMP server in (C:\wamp, open C:\wamp\www)for PHP working environment.
+Goto this url path using cmd :
+$ C:\xampp\htdocs
+Step 3
+Now you need to type the following command to create a new Laravel project using composer.
+$ Composer create-project --prefer-dist laravel/laravel Project-name
+
+Step 4
+If you have done the steps mentioned above carefully and then you need to check whether it is properly working or not and for that, you need to test the installation by opening the following link in your browser.
+
+$  http://Localhost/mylaravel/public/
+		Or
+$  http://Localhost/project-name/public/
+
+View localhost install Laravel or not to check this command .
+
+
+# Note :  By default Index file in public folder in laravel folder.
+
+Url :  localhost/folder-name/public
+Show the view of laravel 5.1 version install or not please check this url..
+
+=================================================================
+			If you change a simple project how to run a simple way then change some values otherwise goto laravel public folder you can access, if you run a simple project then some changes htaccess file move to public folder to main project folder and server.php rename file to index.php file .
+
+Que : 1 
+If a user does not show public directory structure then goto the public folder in the laravel folder on php ?
+
+Ans :  
+cut file   “ .htaccess .php “  in the public folder and paste the laravel folder in the same file .
+
+Laravel folder -> Public folder ->  .htaccess.php
+Change with : Laravel folder -> .htaccess.php
+
+Que :2
+Set the public folder using view purpose then goto the file?
+Ans : move .htaccess file public folder to laravel folder OR project name folder , and 
+Rename server.php file to index.php file .
+
+
+Note : Mostly public folders should not be removed . only just change or rename public_html name . When I am hosting a website not change or remove the htaccess file and public folders.
+====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================
+
+How to Work MVC On Laravel Framework in PHP Code : 
+
+
+How to create mvc on Laravel Framework : 
+
+View folder path =>
+
+C:\xampp\htdocs\laravel\resources\views
+Create same file (like as hello.blade.php )
+
+Hello.blade.php
+
+<html>
+<head>
+<title>
+Hello Laravel
+</title>
+</head>
+<body>
+<h1> Hello View in Laravel Site </h1>
+</body>
+</html>
+
+
+Controller path =>
+
+C:\xampp\htdocs\laravel\app\Http\Controllers
+Create same file (like as hellocontroller.php)
+
+
+File name : Hellocontroller.php
+
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+
+class Hellocontroller extends controller{
+   public function index(){
+       return view('hello');
+   }
+}
+?>
+C:\xampp\htdocs\laravel\routes\web.php
+
+Create file routes.php oR web.php 
+
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('sayhello','Hellocontroller@index');
+Route::get('/', function () {
+   return view('welcome');
+});
+
+
+Note : 
+Route::get/post(‘function_name’,’controller_class@function_name’);
+
+
+===================================================================
+
+	 Pass Parameter using Get url drop fname value
+
+
+Controller path =>
+
+C:\xampp\htdocs\laravel\app\Http\Controllers
+Create same file (like as hellocontroller.php)
+
+
+File name : Hellocontroller.php
+
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+
+class Hellocontroller extends controller{
+   public function index($fname){
+       //return view('hello');
+       echo "Hello Dear $fname";
+   }
+}
+
+?>
+C:\xampp\htdocs\laravel\routes\web.php
+
+Create file routes.php oR web.php 
+
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+//Route::get('test/{fname}','Hellocontroller@index');
+Route::get('test/{fname}','Hellocontroller@index')->where(['fname'=>"[a-zA-Z]+"]);
+
+
+// not using controller method only use for view purpose alternative way :
+// only send price int value not send another name goto validation of using // route methods (doing some validation using same url of functions)..
+// using validation if url pass ram , ram is not int then validation use on // same url or rotues.php file like as  {->where(['price'=>"[0-9]+"])}
+
+Route::get('demo/{price}', function ($price) {
+   echo "Price is $price";
+})->where(['price'=>"[0-9]+"]);
+
+// Required Parameter of url pass all value print on browser output ..
+Route::get('filter/{min}/{max}', function ($min,$max) {
+   echo "required parameter : man is $min And max is $max";
+});
+
+// optional Parameter of url pass all value print on browser output ..
+Route::get('filter/{max}/{min?}', function ($max,$min='0') {
+   echo "Optional Parameter : max is $max And min is $min";
+});
+
+Route::get('/', function () {
+   return view('welcome');
+});
+
+
+
+Note : 
+Route::get/post(‘function_name’,’controller_class@function_name’);
+
+Check Output ⇒
+ 
+
+Check output ⇒
+Url 1 :  http://localhost/mylaravel/test/saurabh
+Check another output ⇒
+Url 2 : http://localhost/mylaravel/demo/198
+
+Check another output ⇒
+Url 3 : http://localhost/mylaravel/demo/ram/
+
+Output is using validation in the url of rotues.php file then show output is :   Page not Found error.
+
+Check another output ⇒
+Check url using max and min parameter (required) both using this same value :
+Url 4 : http://localhost/mylaravel/filter/12/12233
+
+Check another output ⇒
+Check url using max parameter (optional) using this same value :
+Url 5 : http://localhost/mylaravel/filter/12/
+
+
+
+====================================================================
+
+Middleware In laravel Framework :
+
+
+Middleware path ⇒
+C:\xampp\htdocs\laravel\app\http\middleware folder
+
+Inside create a middleware file using commands : 
+
+Goto cmd > php -v 
+Goto cmd > C:\xampp\htdocs\laravel
+
+Make middleware on using command : 
+Goto project using cmd commands :
+
+$ Php artisan make : middleware test
+C:\xampp\htdocs\laravel > php artisan make:middleware test
+
+Using command run so print massage is  : “ Middleware was created successfully. “
+
+
+Create automatically middleware file (test.php as middleware file.)
+
+
+C:\xampp\htdocs\laravel\app\Http\Middleware\
+
+C:\xampp\htdocs\laravel\app\Http\Middleware\Test.php
+
+
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class test
+{
+   /**
+    * Handle an incoming request.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \Closure  $next
+    * @return mixed
+    */
+   public function handle($request, Closure $next)
+   {
+       $ip = $request->ip();
+       if($ip == "127.0.0.1")
+       {
+           return redirect('');
+       }
+       return $next($request);
+   }
+}
+
+
+			=====================================
+
+C:\xampp\htdocs\laravel\routes\web.php
+Routes.php Or  web.php
+
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+//Route::get('test/{fname}','Hellocontroller@index');
+Route::get('test/{fname}','Hellocontroller@index')->where(['fname'=>"[a-zA-Z]+"]);
+
+// not using controller method only use for view purpose alternative way :
+
+Route::get('demo/{price}', function ($price) {
+   echo "Price is $price";
+})->where(['price'=>"[0-9]+"]);
+
+// Required Parameter of url pass all value print on browser output ..
+Route::get('filter/{min}/{max}', function ($min,$max) {
+   echo "required parameter : man is $min And max is $max";
+});
+
+// optional Parameter of url pass all value print on browser output ..
+Route::get('filter/{max}/{min?}', function ($max,$min='0') {
+   echo "Optional Parameter : max is $max And min is $min";
+});
+
+Route::get('/', function () {
+   return view('welcome');
+});
+
+//this url using middleware hello url used first middleware after load view
+
+Route::get('hello',function(){
+   return view ('hello');
+})->middleware('test');
+
+?>
+
+
+
+		==================================
+
+Set middleware you create command some change after upload/set middleware file in kernel.php in last one add middleware…
+
+
+Kernel file path : 
+
+C:\xampp\htdocs\laravel\app\Http
+
+Kernel.php ⇒  Define middleware file in kernel.php ..
+
+
+<?php 
+
+/**
+* The application's route middleware.
+*
+* These middleware may be assigned to groups or used individually.
+*
+* @var array
+*/
+protected $routeMiddleware = [
+// define the middleware file name in kernel.php file ..
+   'test' => \App\Http\Middleware\test::class,
+
+];
+
+
+?>
+
+
+Output check using url :
+Url 1 : http://localhost/mylaravel/hello
+Output : run file hello.blade.php inside view folder..
+==============================================================
+
+
+
+
+
+
