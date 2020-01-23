@@ -2,8 +2,7 @@ How To install Laravel in Php framework
 Url Install Laravel :
 
 https://www.phptpoint.com/install-laravel-on-windows/
-
-
+https://www.youtube.com/watch?v=FIzcOM6dd5o&list=PLcuqiGkigdex_2ytK5X-HptOJSJ7Mm9bU&index=62
 Step 1
 
 Visit the below-mentioned URL and download composer to install it on your system.
@@ -73,47 +72,11 @@ Rename server.php file to index.php file .
 
 
 Note : Mostly public folders should not be removed . only just change or rename public_html name . When I am hosting a website not change or remove the htaccess file and public folders.
-====================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+===================================================================
 ===================================================================
 
-How to Work MVC On Laravel Framework in PHP Code : 
-
+How to Work MVC On Laravel Framework in PHP Code ⇒
+ 
 
 How to create mvc on Laravel Framework : 
 
@@ -300,12 +263,16 @@ Goto cmd > C:\xampp\htdocs\laravel
 
 Make middleware on using command : 
 Goto project using cmd commands :
-
 $ Php artisan make : middleware test
+
 C:\xampp\htdocs\laravel > php artisan make:middleware test
 
 Using command run so print massage is  : “ Middleware was created successfully. “
 
+All local ip support any ip (like : ⇒
+$ip == "::1"
+$ip == "127.0.0.1"
+)
 
 Create automatically middleware file (test.php as middleware file.)
 
@@ -313,7 +280,6 @@ Create automatically middleware file (test.php as middleware file.)
 C:\xampp\htdocs\laravel\app\Http\Middleware\
 
 C:\xampp\htdocs\laravel\app\Http\Middleware\Test.php
-
 
 <?php
 
@@ -333,13 +299,14 @@ class test
    public function handle($request, Closure $next)
    {
        $ip = $request->ip();
-       if($ip == "127.0.0.1")
-       {
-           return redirect('');
+       if($ip == "::1")    // if($ip == "127.0.0.1")
+        {
+           return redirect('/');
        }
        return $next($request);
    }
 }
+
 
 
 			=====================================
@@ -395,7 +362,7 @@ Route::get('hello',function(){
 
 		==================================
 
-Set middleware you create command some change after upload/set middleware file in kernel.php in last one add middleware…
+Register / Set middleware you create command some change after upload/set middleware file in kernel.php in last one add middleware…
 
 
 Kernel file path : 
@@ -427,10 +394,378 @@ protected $routeMiddleware = [
 Output check using url :
 Url 1 : http://localhost/mylaravel/hello
 Output : run file hello.blade.php inside view folder..
+If a user uses middleware then redirect ip is detected then go to the next redirection page if middleware is driven then redirect another page otherwise the same url call ..
+
+If the middleware calls then http://localhost/mylaravel/hello url is redirected http://localhost/mylaravel/  this url.
+
+Otherwise call the same url http://localhost/mylaravel/hello is http://localhost/mylaravel/hello same link call it the page ..
+
+==============================================================
+
+	 How to create controller in Laravel Framework ⇒
+
+Goto cmd > c:/xampp/htdocs/laravel_project
+
+$ php artisan make:controller Testcontroller
+# controller created successfully.
+
+C:\xampp\htdocs\laravel\app\Http\Controllers
+Testcontroller.php
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class TestController extends Controller
+{
+   public function showview(){
+       return view('hello');
+   }
+}
+
+?>
+
+
+			===============================
+
+Web.php Or routes.php
+C:\xampp\htdocs\laravel\routes\web.php
+<?php
+
+Route::get('test','TestController@showview');
+// Route::method('url_name','controller_name@function_name');
+
+?>
+
+
+ Check url : http://localhost/mylaravel/test
+For using output ..
+
+==============================================================
+
+ How to Load Data using controller view and routes file ⇒
+
+
+Using Cmd  >  php artisan make:controller SubjectController
+
+Create automatically controller
+
+SubjectController : (controller send data user create purpose)==>
+
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class SubjectController extends Controller
+{
+   public function index(){
+       $subjects = array('php','python','java','Go','Node');
+       $marks = [12,13,14,15,16];
+       return view('subject')->with(['subjects'=>$subjects,'marks'=>$marks]);
+// return view('subject')->withsubjects($subjects)->withmarks($marks);
+
+   }
+}
+
+?>
+
+
+		======================================
+
+Routes.php  or  web.php  : (url / user create url purpose)==>
+
+<?php
+Route::get('subject','SubjectController@index');
+
+?>
+
+Looking output : url is ⇒
+http://localhost/mylaravel/subject
+Output print array..
+
+		=========================================
+
+
+Views / subject.blade.php ⇒ (view / output purpose) ==>
+
+Subject.blade.php ==>
+
+<html>
+<title>IT Subject</title>
+<body>
+<center><h2>This is All Language in IT software line</h2></center>
+<p><?php print_r($subjects); ?></p>
+<p><?php print_r($marks); ?></p>
+</body>
+</html>
+
+===>
+Output ⇒  url : http://localhost/mylaravel/subject
+This is All Language in IT software line
+Array ( [0] => php [1] => python [2] => java [3] => Go [4] => Node )
+Array ( [0] => 12 [1] => 13 [2] => 14 [3] => 15 [4] => 16 ) 
+			
+
+
+
+
 ==============================================================
 
 
 
+How to create View and load header and footer using Laravel ⇒
 
+Blade is a templating engine , it changes some view files using blade keyword load the view file ..?
+
+			=======================================
+
+Using command on cmd make controller :
+
+Cmd > php artisan make:controller ViewController
+
+ViewController :
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class ViewController extends Controller
+{
+  public function index(){
+       $subjects = array('php','python','java','Go','Node');
+       $marks = [12,13,14,15,16,17];
+       //return view('subject')->with(['subjects'=>$subjects,'marks'=>$marks]);
+       return view('Testview')->withsubjects($subjects)->withmarks($marks);
+  }
+}
+
+?>
+
+			=========================================
+
+
+On using make directory layout inside a master.blade.php file : 
+
+C:\xampp\htdocs\laravel\resources\views\layout
+Create layout directory using master.blade.php
+
+
+Path : C:\xampp\htdocs\laravel\resources\views\layout\master.blade.php  ⇒
+Create master.blade.php file using header body and footer all add value inside file .
+
+
+<html>
+<head>
+<title>
+The Laravel View
+</title>
+</head>
+<body>
+<h2> This is master header </h2>
+
+<!--   -->
+<!-- use command blade is used yield is using section call there used.-->
+       @yield('body')
+
+<h3> This is master footer </h3>
+</body>
+</html>
+
+
+
+Note :  @yield key is used in master file using the header and footer all extends in the same file then used the yield command.
+
+
+				===========================
+Path : Testview.blade.php ⇒
+C:\xampp\htdocs\laravel\resources\views\Testview.blade.php
+⇒
+
+
+@extends('layout/master')
+
+@section('body')
+
+<center><h2>This is All Language in IT software line</h2></center>
+<p><?php print_r($subjects); ?></p>
+<p><?php print_r($marks); ?></p>
+
+@endsection
+
+				==============================
+
+Routes.php or web.php ⇒
+Path : C:\xampp\htdocs\laravel\routes\web.php
+Code :
+
+
+<?php
+
+Route::get('testview','ViewController@index');
+
+?>
+
+				===============================
+
+
+View output in this url :
+http://localhost/mylaravel/testview
+
+Output ⇒
+Header of master
+Body of controller.php
+Footer of master.
+
+
+=============================================================
+
+How to create script and html data print the next page  ⇒
+
+Using command on cmd make controller :
+
+Cmd > php artisan make:controller ViewController
+
+ViewController :
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class ViewController extends Controller
+{
+  public function index(){
+       $subjects = array('php','python','java','Go','Node');
+       $marks = [12,13,14,15,16,17];
+       //return view('subject')->with(['subjects'=>$subjects,'marks'=>$marks]);
+       return view('Testview')->withsubjects($subjects)->withmarks($marks);
+  }
+
+  public function data(){
+       $data1 = '<script> alert("Hello");</script>';
+       $marks = [12,13,14,15,16,17];
+       //return view('subject')->with(['subjects'=>$subjects,'marks'=>$marks]);
+       return view('Testdata')->with('data1',$data1);
+  }
+}
+
+
+?>
+
+
+			=========================================
+
+
+On using make directory layout inside a master.blade.php file : 
+
+C:\xampp\htdocs\laravel\resources\views\layout
+Create layout directory using master.blade.php
+
+
+Path : C:\xampp\htdocs\laravel\resources\views\layout\master.blade.php  ⇒
+Create master.blade.php file using header body and footer all add value inside file .
+
+Code :
+
+<html>
+<head>
+<title>
+The Laravel View
+</title>
+</head>
+<body>
+<h2> This is master header </h2>
+
+<!--  // use command blade is used yield is using section call there is used.  -->
+
+       @yield('body')		<?php //load another section master page ?>
+
+       @yield('bodydata')	<?php //load another section master page ?>
+
+
+<h3> This is master footer </h3>
+</body>
+</html>
+
+
+
+
+Note :  @yield key is used in master file using the header and footer all extends in the same file then used the yield command.
+
+
+				===========================
+
+Path : Testdata.blade.php ⇒
+C:\xampp\htdocs\laravel\resources\views\Testdata.blade.php
+⇒
+
+
+@extends('layout/master')
+
+@section('bodydata')
+
+<center><h2>This is All Language in IT software line</h2></center>
+<p><?php echo $data1; ?></p>   
+<?php // call javascript commannd using php code. ()?>
+<p>{{ $data1 }}</p>              
+<?php // load html data using this one {{ $var }}  (it will not run the scrpit) ?>
+<p>{{!! $data1 !!}} </p>         
+<?php  // load script to use this command syntax . (It will run the script) ?>
+<p> ${{$data1}} </p>              
+<?php // to tell the laravel that this is the not part of larevel part  ?>
+
+@endsection
+
+
+
+				==============================
+
+Routes.php or web.php ⇒
+Path : C:\xampp\htdocs\laravel\routes\web.php
+Code :
+
+
+<?php
+
+Route::get('testdata','ViewController@data');
+
+?>
+
+				===============================
+
+
+
+
+
+
+
+
+
+View output in this url :
+http://localhost/mylaravel/testdata
+
+
+Output ⇒
+Header of master
+Body of controller.php
+(call script
+Call html data
+Call laravel data is not part then using command
+Call script syntax
+Call script syntax is not
+)
+
+Footer of master.
+
+
+==============================================================
 
 
