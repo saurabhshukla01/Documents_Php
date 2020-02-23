@@ -1,0 +1,312 @@
+Step By Step Install Laravel framework on Php core create Project
+
+Date : 21 - Jan - 2020 .
+=====================================================
+
+Step by step install Xampp server Laravel framework :
+
+Step 1 : open your xampp server and wamp server
+--    run apache and mysql on localhost
+
+step 2 : open cmd
+--    open htdocs folder on xampp server and copy the path and past in cmd
+
+step 3 :  we need to enter create command .. copy the line and paste on cmd .. this is project name .. you can change it .. now wait until completed..
+
+url 1 : https://laravel.com/docs/5.6/installion
+url 2 : https://laravel.com/docs/6.x
+
+create a project in laravel project user change project name ..  to the last one.
+
+$ composer create-project --prefer-dist laravel/laravel blog
+
+Our project id successfully created.. On a laravel project .
+
+
+
+
+
+
+
+
+
+
+
+Commands using Laravel framework :
+		-----------------------------------------------------
+
+
+Create project in laravel Framework command :
+$ composer create-project --prefer-dist laravel/laravel blog
+
+Check php version ⇒
+
+$   php -v
+$   composer
+
+
+Make controller commands  ⇒
+
+$  php artisan make:controller TestController
+
+Make middleware commands  ⇒
+
+$  php artisan make:middleware test_middleware
+
+Make model commands  ⇒
+
+$  php artisan make:model Testmodel
+
+Find Route List command  ⇒
+
+$  php artisan route:list
+
+Find php artisan Version command  ⇒
+
+$  php artisan -V
+
+Migration command and migrate all file table and drop table ⇒
+
+$ Important fresh command on migration table and migrate also ⇒
+$  php artisan migrate:fresh --seed
+$  php artisan migrate:refresh
+$  php artisan migrate:fresh
+
+-------------------------------------------------------
+Create migration table in Laravel project command ⇒
+
+$ php artisan make:migration create_users_table
+$ php artisan make:migration create_posts_table
+$ php artisan make:migration create_users_table --create=users
+$ php artisan make:migration add_votes_to_users_table --table=users
+
+-------------------------------------------------------------
+
+use npm to install the front-end dependencies ⇒
+
+$  npm install
+
+Create Mysql Database how to use command  ⇒
+
+$ mysql -u root -p
+Password : “ ”
+mysql> create database db;
+Open the .env file and update the credentials to access your MySQL database ⇒
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db
+DB_USERNAME=root
+DB_PASSWORD=******
+
+
+migrate command to create your database and a bunch of SQL tables needed by Laravel  ⇒
+
+$ php artisan migrate
+
+
+create our first Laravel Model run command ⇒
+
+$ php artisan make:model Contact --migration
+
+create the contacts table in the database using the following command  ⇒
+
+$ php artisan migrate
+
+------------------------------------------------------------
+
+How to create migration and migrate to table refresh and use seed so used this commands in Laravel project ⇒
+
+You can use this command you create first database table but not create database inside table using migrate command then use this command properly created automatically table and drop also yours table user can drop it also using three important commands : 
+
+
+$  php artisan migrate:fresh --seed
+$  php artisan migrate:refresh
+$  php artisan migrate:fresh
+
+How to create a table and migrate table and migration also in laravel⇒ command is run on cmd prompt..
+
+Important fresh command on migration table and migrate also ⇒
+$  php artisan migrate:fresh --seed
+$  php artisan migrate:refresh
+$  php artisan migrate:fresh
+
+-------------------------------------------------------
+Create migration table in Laravel project command ⇒
+
+$ php artisan make:migration create_users_table
+$ php artisan make:migration create_posts_table
+$ php artisan make:migration create_users_table --create=users
+$ php artisan make:migration add_votes_to_users_table --table=users
+
+--------------------------------------------------------------
+
+
+Creating the Controller and Routes ⇒
+
+$ php artisan make:controller ContactController --resource
+
+
+create a contacts folder in the views folder ⇒
+
+$ mkdir contacts
+
+Jump to next folder ⇒
+
+$  Cd folder name
+
+
+--------------------------------------------------------------
+
+Composer and scaffold the default authentication UI in our app ⇒
+
+$  composer require laravel/ui
+
+Bootstrap/jQuery. Execute below command  ⇒
+
+$  php artisan ui bootstrap --auth
+
+Then run "npm install && npm run dev" to compile your fresh scaffolding  ⇒
+
+$  npm install && npm run dev
+
+Migrations are used to create, modify as well as share the application’s database schema ⇒
+
+$  php artisan make:migration create_tasks_table --create=tasks
+
+
+Migrate command will update the changes made in schema to the actual database  ⇒
+
+$  php artisan migrate
+
+
+Eloquent Model represents database entities and can be used to query data as well as insert and update data to the tables.So, let’s make a model for our tasks table using make:model command ⇒
+
+$  php artisan make:model model_name
+
+Laravel provides a command-line interface known as Artisan. Artisan contains various commands  ⇒
+
+$ php artisan tinker
+>App\User::first()->tasks;
+
+
+Create controller commands  ⇒
+
+$  php artisan make:controller TasksController
+
+
+Blade template engine allows us to use php inside HTML without enclosing it inside “<?php  ?>”.
+
+Run the project in Localhost ⇒
+$  php artisan serve
+
+
+
+
+Check url :  
+Laravel development server started: http://127.0.0.1:8000
+
+# Go to url is making the project command using the php ⇒
+$ laravel new laravel6_pdf
+
+# Using this command any package download like as a pdf package then using this command is : 
+
+$ composer require barryvdh/laravel-dompdf
+
+Add some code in config /app.php file ⇒
+
+config/app.php ⇒
+Add provider library is : 
+Provider =[“
+
+Barryvdh\DomPDF\ServiceProvider::class,
+
+“]
+
+Aliases = [“
+
+	‘PDF’=> Barryvdh\DomPDF\Facade::class,
+
+# make controller inside project using this command : 
+
+$ php artisan make:controller PDFController
+
+Port change command is laravel is : change port is : 9000
+
+$ php artisan serve --port=9000
+============================================================
+
+How to load js bootstrap css in laravel project ⇒
+
+
+Create a project command in laravel project inside cmd ⇒
+
+$ laravel new laravel_vewjs
+$ cd laravel_viwjs
+# require package is laravel project inside this one : 
+$ composer require laravel/ui
+$ php artisan ui vue --auth
+$ npm install && npm run dev
+# mysql database using in cmd 
+$ mysql -u root -p
+$ password
+$ create database laravel_vewjs
+$ php artisan migrate
+
+--------------------------------------------
+
+Set .env file database name : open port is 
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/Login
+http://127.0.0.1:8000/register
+
+Register with gmail and password after logout and same gmail and password match and run to same dashboard open easy ok ..
+==============================================================
+Command using in laravel multiple authentication app using ⇒
+
+# Create project commands :
+
+$ laravel new laravel_multi
+
+# jump project folder :
+
+$ cd laravel_multi
+
+#  Create migration for admins
+
+$  php artisan make:migration create_admins_table
+
+$  php artisan make:migration create_bloggers_table
+
+#  run migrate php database table :
+
+$  php artisan migrate
+
+#  create model using in php laravel commands :
+
+$  php artisan make:model Admin
+
+$  php artisan make:model Blogger
+
+define methods for creating a blogger:
+registration is complete.
+Set up authentication pages
+
+$  composer require laravel/ui --dev
+$  php artisan ui vue --auth
+$  npm install && npm run dev
+
+#  how to generate key in laravel application project is :
+$  php artisan key:generate
+
+How to run project this serve portal is : 
+$  php artisan serve
+
+
+
+
+
+
+
+
